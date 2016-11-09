@@ -455,7 +455,8 @@ static void classInitNative(JNIEnv* env, jclass clazz) {
     ALOGI("%s: succeeds", __FUNCTION__);
 }
 
-static void initializeNative(JNIEnv *env, jobject object, jint max_hf_clients) {
+static void initializeNative(JNIEnv *env, jobject object, jint max_hf_clients,
+                             jboolean inband_ringing_support) {
     const bt_interface_t* btInf;
     bt_status_t status;
 
@@ -483,7 +484,7 @@ static void initializeNative(JNIEnv *env, jobject object, jint max_hf_clients) {
     }
 
     if ( (status = sBluetoothHfpInterface->init(&sBluetoothHfpCallbacks,
-          max_hf_clients)) != BT_STATUS_SUCCESS) {
+          max_hf_clients, inband_ringing_support)) != BT_STATUS_SUCCESS) {
         ALOGE("Failed to initialize Bluetooth HFP, status: %d", status);
         sBluetoothHfpInterface = NULL;
         return;
