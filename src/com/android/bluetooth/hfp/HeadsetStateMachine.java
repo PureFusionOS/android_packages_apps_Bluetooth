@@ -1735,6 +1735,10 @@ final class HeadsetStateMachine extends StateMachine {
                         case EVENT_TYPE_BIEV:
                             processAtBiev(event.valueInt, event.valueInt2, event.device);
                             break;
+                        case EVENT_TYPE_WBS:
+                            Log.d(TAG, "MHF: EVENT_TYPE_WBS codec is " + event.valueInt);
+                            processWBSEvent(event.valueInt, event.device);
+                            break;
                         default:
                             Log.e(TAG, "Unexpected event: " + event.type);
                             break;
